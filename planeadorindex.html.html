@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Planeemos la Carrera - Tu Espacio Académico</title>
+  
+  <!-- Favicon de Arbolito 🌲 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Nunito', 'sans-serif'],
+            handwriting: ['Caveat', 'cursive'],
+            serif: ['Playfair Display', 'serif'],
+            display: ['Fredoka', 'sans-serif'],
+          },
+          screens: {
+            'xs': '475px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease; }
+
+    .theme-sage {
+      --bg-main: #FAF6ED;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #5B7053;
+      --sidebar-text: #F1F5EE;
+      --accent-pink: #E8A598;
+      --accent-pink-hover: #DF8D7E;
+      --accent-soft-bg: #F7E3DF;
+      --accent-soft-text: #8C473A;
+      --text-dark: #3A4735;
+      --text-muted: #7A8B73;
+      --border-color: #E2E8DC;
+      --theme-circle-ring: #E8A598;
+      --theme-circle-dashed: #DF8D7E;
+      --bg-pattern: radial-gradient(#C5D4BD 1.5px, transparent 1.5px);
+      --bg-pattern-size: 24px 24px;
+    }
+
+    .theme-coquette {
+      --bg-main: #FFF0F3;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #D87093;
+      --sidebar-text: #FFFFFF;
+      --accent-pink: #FFB6C1;
+      --accent-pink-hover: #FFA0B0;
+      --accent-soft-bg: #FFE4E8;
+      --accent-soft-text: #9E2A4B;
+      --text-dark: #4A2E35;
+      --text-muted: #9E7B85;
+      --border-color: #F8D7DA;
+      --theme-circle-ring: #FFB6C1;
+      --theme-circle-dashed: #FF8DA1;
+      --bg-pattern: radial-gradient(#F3B0C3 1.5px, transparent 1.5px), linear-gradient(135deg, #FFF0F3 0%, #FFE4E8 100%);
+      --bg-pattern-size: 20px 20px, 100% 100%;
+    }
+
+    .theme-matcha {
+      --bg-main: #F2F5EF;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #3B5249;
+      --sidebar-text: #EBF2EE;
+      --accent-pink: #A3B18A;
+      --accent-pink-hover: #588157;
+      --accent-soft-bg: #E3EAD8;
+      --accent-soft-text: #2D4336;
+      --text-dark: #1F2D24;
+      --text-muted: #6B7A6E;
+      --border-color: #DAD7CD;
+      --theme-circle-ring: #A3B18A;
+      --theme-circle-dashed: #588157;
+      --bg-pattern: radial-gradient(#B5C2A3 1.5px, transparent 1.5px), linear-gradient(to right, #F2F5EF 0%, #E8EFE3 100%);
+      --bg-pattern-size: 22px 22px, 100% 100%;
+    }
+
+    .theme-ocean {
+      --bg-main: #F0F8FF;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #1E3A8A;
+      --sidebar-text: #EFF6FF;
+      --accent-pink: #38BDF8;
+      --accent-pink-hover: #0284C7;
+      --accent-soft-bg: #E0F2FE;
+      --accent-soft-text: #0369A1;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --border-color: #BAE6FD;
+      --theme-circle-ring: #38BDF8;
+      --theme-circle-dashed: #0284C7;
+      --bg-pattern: radial-gradient(#7DD3FC 1.5px, transparent 1.5px), linear-gradient(180deg, #F0F8FF 0%, #E0F2FE 100%);
+      --bg-pattern-size: 26px 26px, 100% 100%;
+    }
+
+    .theme-sunset {
+      --bg-main: #FFF7ED;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #9A3412;
+      --sidebar-text: #FFEDD5;
+      --accent-pink: #FB923C;
+      --accent-pink-hover: #F97316;
+      --accent-soft-bg: #FFEDD5;
+      --accent-soft-text: #C2410C;
+      --text-dark: #431407;
+      --text-muted: #9A3412;
+      --border-color: #FED7AA;
+      --theme-circle-ring: #FB923C;
+      --theme-circle-dashed: #EA580C;
+      --bg-pattern: radial-gradient(#FDBA74 1.5px, transparent 1.5px), linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+      --bg-pattern-size: 24px 24px, 100% 100%;
+    }
+
+    .theme-golden {
+      --bg-main: #FEFCE8;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #854D0E;
+      --sidebar-text: #FEF9C3;
+      --accent-pink: #FACC15;
+      --accent-pink-hover: #EAB308;
+      --accent-soft-bg: #FEF08A;
+      --accent-soft-text: #854D0E;
+      --text-dark: #422006;
+      --text-muted: #CA8A04;
+      --border-color: #FEF08A;
+      --theme-circle-ring: #FACC15;
+      --theme-circle-dashed: #CA8A04;
+      --bg-pattern: radial-gradient(#FDE047 1.5px, transparent 1.5px);
+      --bg-pattern-size: 22px 22px;
+    }
+
+    .theme-autumn {
+      --bg-main: #FDF8F2;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #8B4513;
+      --sidebar-text: #FFF8DC;
+      --accent-pink: #D2691E;
+      --accent-pink-hover: #CD853F;
+      --accent-soft-bg: #F5EBE6;
+      --accent-soft-text: #6D3418;
+      --text-dark: #3E2723;
+      --text-muted: #8D6E63;
+      --border-color: #EFEBE9;
+      --theme-circle-ring: #D2691E;
+      --theme-circle-dashed: #8B4513;
+      --bg-pattern: radial-gradient(#D7CCC8 1.5px, transparent 1.5px), linear-gradient(180deg, #FDF8F2 0%, #F5EBE6 100%);
+      --bg-pattern-size: 24px 24px, 100% 100%;
+    }
+
+    .theme-lavender {
+      --bg-main: #F5F3FF;
+      --bg-card: #FFFFFF;
+      --sidebar-bg: #6D28D9;
+      --sidebar-text: #F5F3FF;
+      --accent-pink: #C084FC;
+      --accent-pink-hover: #A855F7;
+      --accent-soft-bg: #EDE9FE;
+      --accent-soft-text: #5B21B6;
+      --text-dark: #2E1065;
+      --text-muted: #7E22CE;
+      --border-color: #DDD6FE;
+      --theme-circle-ring: #C084FC;
+      --theme-circle-dashed: #9333EA;
+      --bg-pattern: radial-gradient(#D8B4FE 1.5px, transparent 1.5px), linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+      --bg-pattern-size: 20px 20px, 100% 100%;
+    }
+
+    .theme-dark {
+      --bg-main: #18181B;
+      --bg-card: #27272A;
+      --sidebar-bg: #09090B;
+      --sidebar-text: #FAFAFA;
+      --accent-pink: #F43F5E;
+      --accent-pink-hover: #E11D48;
+      --accent-soft-bg: #3F1D24;
+      --accent-soft-text: #FDA4AF;
+      --text-dark: #F4F4F5;
+      --text-muted: #A1A1AA;
+      --border-color: #3F3F46;
+      --theme-circle-ring: #F43F5E;
+      --theme-circle-dashed: #E11D48;
+      --bg-pattern: radial-gradient(#52525B 1.5px, transparent 1.5px);
+      --bg-pattern-size: 20px 20px;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image: var(--bg-pattern);
+      background-size: var(--bg-pattern-size);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bg-custom-card { background-color: var(--bg-card); }
+    .bg-custom-sidebar { background-color: var(--sidebar-bg); }
+    .text-custom-sidebar { color: var(--sidebar-text); }
+    .bg-custom-accent { background-color: var(--accent-pink); }
+    .hover\:bg-custom-accent-hover:hover { background-color: var(--accent-pink-hover); }
+    .text-custom-dark { color: var(--text-dark); }
+    .text-custom-muted { color: var(--text-muted); }
+    .border-custom { border-color: var(--border-color); }
+
+    .dynamic-badge { background-color: var(--accent-soft-bg); color: var(--accent-soft-text); }
+    .dynamic-underline { text-decoration-color: var(--theme-circle-ring); }
+    .dynamic-circle-border { border-color: var(--theme-circle-ring) !important; }
+    .dynamic-circle-dashed { border-color: var(--theme-circle-dashed) !important; }
+    .dynamic-divider { background-color: var(--theme-circle-ring); }
+    .dynamic-text-accent { color: var(--accent-soft-text); }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-pink); border-radius: 9999px; }
+  </style>
+</head>
+<body class="theme-sage min-h-screen font-sans antialiased selection:bg-rose-200 flex flex-col justify-between">
+
+  <!-- TOP HEADER -->
+  <header id="app-header" class="hidden bg-custom-sidebar text-custom-sidebar shadow-md py-2.5 px-4 sm:px-6 sticky top-0 z-50 transition-all">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 sm:gap-4">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="window.navToHub()" class="flex items-center gap-1.5 sm:gap-2 text-lg sm:text-xl font-serif font-bold tracking-wide hover:opacity-90">
+          <span>🌲</span> <span class="hidden xs:inline">Planeemos la Carrera</span><span class="xs:hidden">Mi Carrera</span>
+        </button>
+        <span id="header-degree" class="text-[10px] sm:text-xs bg-white/20 px-2 py-0.5 sm:py-1 rounded-full font-medium truncate max-w-[120px] xs:max-w-none">ING. AMBIENTAL</span>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-4">
+        <div class="flex items-center gap-1 bg-black/15 p-1 rounded-full text-xs">
+          <span class="pl-1.5 pr-0.5 text-xs"><i class="fa-solid fa-palette"></i></span>
+          <select id="theme-select" onchange="window.changeTheme(this.value)" class="bg-transparent border-none text-[11px] sm:text-xs font-semibold focus:outline-none cursor-pointer text-white max-w-[110px] sm:max-w-none">
+            <option value="theme-sage" class="text-black">🌿 Soft Spring</option>
+            <option value="theme-coquette" class="text-black">🎀 Coquette Pink</option>
+            <option value="theme-matcha" class="text-black">🍵 Matcha Tea</option>
+            <option value="theme-ocean" class="text-black">🌊 Ocean Breeze</option>
+            <option value="theme-sunset" class="text-black">🌇 Sunset Terrace</option>
+            <option value="theme-golden" class="text-black">🌾 Golden Hour</option>
+            <option value="theme-autumn" class="text-black">🍁 Warm Autumn</option>
+            <option value="theme-lavender" class="text-black">🔮 Lavender Dream</option>
+            <option value="theme-dark" class="text-black">🌙 Dark Academic</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3 border-l border-white/20 pl-2 sm:pl-4">
+          <div class="text-right hidden sm:block">
+            <p id="user-display-email" class="text-xs font-bold leading-tight">estudiante@uni.edu</p>
+            <p class="text-[10px] opacity-80 leading-tight">Sesión Activa (Nube ☁️)</p>
+          </div>
+          <button onclick="window.logout()" title="Cerrar Sesión" class="p-1.5 sm:p-2 rounded-full hover:bg-white/20 text-xs transition">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- APP MAIN -->
+  <main class="p-3 sm:p-6 max-w-7xl mx-auto w-full flex-grow">
+
+    <!-- 1. LOGIN / REGISTRO -->
+    <section id="view-login" class="min-h-[80vh] flex items-center justify-center py-4">
+      <div class="bg-custom-card border-2 border-custom rounded-3xl shadow-xl overflow-hidden max-w-4xl w-full grid md:grid-cols-2">
+        <div class="relative bg-custom-sidebar p-6 sm:p-8 flex flex-col justify-between text-custom-sidebar min-h-[220px] sm:min-h-[300px] bg-cover bg-center transition-all" id="login-banner-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80');">
+          <div>
+            <span class="inline-block px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] sm:text-xs font-semibold mb-2 sm:mb-4">
+              🌲 Mi Cuaderno Universitario
+            </span>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight drop-shadow-md">
+              Planeemos<br>la Carrera<br>Universitaria
+            </h1>
+          </div>
+          <div>
+            <p class="font-handwriting text-xl sm:text-2xl text-amber-100 drop-shadow">"Cada crédito aprobado es un paso más cerca de tus sueños."</p>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-10 flex flex-col justify-center">
+          <div class="text-center mb-4 sm:mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-custom-dark font-serif">¡Bienvenidx!</h2>
+            <p class="text-xs sm:text-sm text-custom-muted">Inicia sesión o regístrate para sincronizar tus notas en la nube.</p>
+          </div>
+
+          <form onsubmit="window.handleLogin(event)" class="space-y-3 sm:space-y-4">
+            <div>
+              <label class="block text-[11px] font-bold text-custom-dark mb-1 uppercase tracking-wider">Correo Electrónico</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-custom-muted"><i class="fa-solid fa-envelope text-xs sm:text-sm"></i></span>
+                <input type="email" id="login-email" required placeholder="tu.correo@universidad.edu" class="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-xl border border-custom bg-custom-card text-custom-dark focus:outline-none focus:ring-2 focus:ring-rose-300 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-custom-dark mb-1 uppercase tracking-wider">Contraseña</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-custom-muted"><i class="fa-solid fa-lock text-xs sm:text-sm"></i></span>
+                <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-xl border border-custom bg-custom-card text-custom-dark focus:outline-none focus:ring-2 focus:ring-rose-300 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-custom-dark mb-1 uppercase tracking-wider">Carrera / Programa</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-custom-muted"><i class="fa-solid fa-graduation-cap text-xs sm:text-sm"></i></span>
+                <input type="text" id="login-degree" placeholder="Ej: ING. AMBIENTAL" class="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-xl border border-custom bg-custom-card text-custom-dark focus:outline-none focus:ring-2 focus:ring-rose-300 text-xs sm:text-sm">
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit" class="w-full py-2.5 sm:py-3 px-4 bg-custom-accent hover:bg-custom-accent-hover text-white font-bold rounded-xl shadow-md transition transform active:scale-95 flex items-center justify-center gap-2 text-xs sm:text-sm">
+                <span>ENTRAR / REGISTRARSE</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </form>
+
+          <p id="login-status-msg" class="text-[11px] text-center text-rose-500 font-semibold mt-3 hidden"></p>
+          <p class="text-[10px] sm:text-[11px] text-center text-custom-muted mt-4 sm:mt-6">☁️ Sincronizado con Firebase Firestore.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CAREER HUB -->
+    <section id="view-hub" class="hidden space-y-4 sm:space-y-6">
+      <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-6 text-center shadow-sm relative overflow-hidden">
+        <div class="inline-block dynamic-badge text-[10px] sm:text-xs px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase tracking-wider mb-1.5">ORGANIZADOR DE CARRERA</div>
+        <h1 class="text-xl sm:text-4xl font-serif font-bold text-custom-dark flex flex-wrap justify-center items-center gap-2">
+          <span>YO ESTUDIO</span>
+          <span id="hub-degree-title" class="underline dynamic-underline underline-offset-4">ING. AMBIENTAL</span>
+        </h1>
+        <p class="text-[11px] sm:text-xs text-custom-muted mt-1">Selecciona cualquier semestre para administrar tus asignaturas y calificaciones.</p>
+      </div>
+
+      <div class="relative min-h-[480px] bg-custom-card border-2 border-custom rounded-3xl p-4 sm:p-6 shadow-sm flex items-center justify-center">
+        <div class="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 z-10 py-2 sm:py-6">
+          
+          <div onclick="window.openSemester('I')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>01</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">I SEMESTRE</h3>
+            <p id="sem-stat-I" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('II')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>02</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">II SEMESTRE</h3>
+            <p id="sem-stat-II" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('III')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>03</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">III SEMESTRE</h3>
+            <p id="sem-stat-III" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('IV')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>04</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">IV SEMESTRE</h3>
+            <p id="sem-stat-IV" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+
+          <!-- CENTER CIRCLE -->
+          <div class="col-span-2 sm:col-span-4 flex justify-center items-center my-2 sm:my-4">
+            <div class="w-44 h-44 xs:w-52 xs:h-52 sm:w-64 sm:h-64 rounded-full bg-custom-card border-4 dynamic-circle-border shadow-xl flex flex-col justify-center items-center p-4 sm:p-6 text-center relative group">
+              <div class="absolute inset-1 border-2 border-dashed dynamic-circle-dashed rounded-full pointer-events-none"></div>
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-custom-muted">Créditos Totales</span>
+              <span id="hub-total-credits" class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-custom-dark my-0.5">0</span>
+              <span class="text-[10px] sm:text-xs text-custom-muted mb-1 sm:mb-2">Aprobados en la carrera</span>
+              <div class="w-10 sm:w-12 h-0.5 dynamic-divider my-0.5 sm:my-1"></div>
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-custom-muted">Promedio General</span>
+              <div class="flex items-center gap-1.5 sm:gap-2 mt-0.5">
+                <span id="hub-global-gpa" class="text-xl xs:text-2xl sm:text-3xl font-serif font-bold dynamic-text-accent">0.00</span>
+                <span id="hub-global-letter" class="text-[10px] sm:text-xs font-bold dynamic-badge px-1.5 sm:px-2 py-0.5 rounded-md">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div onclick="window.openSemester('V')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>05</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">V SEMESTRE</h3>
+            <p id="sem-stat-V" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('VI')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>06</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">VI SEMESTRE</h3>
+            <p id="sem-stat-VI" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('VII')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>07</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">VII SEMESTRE</h3>
+            <p id="sem-stat-VII" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+          <div onclick="window.openSemester('VIII')" class="cursor-pointer bg-custom-card border-2 border-custom hover:border-rose-400 p-3 sm:p-4 rounded-2xl shadow-sm text-center group flex flex-col justify-between min-h-[90px] sm:min-h-[110px]">
+            <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-custom-muted"><span>08</span><i class="fa-solid fa-angle-right opacity-0 group-hover:opacity-100 transition"></i></div>
+            <h3 class="font-serif font-bold text-sm sm:text-lg text-custom-dark group-hover:text-rose-600 transition">VIII SEMESTRE</h3>
+            <p id="sem-stat-VIII" class="text-[10px] sm:text-[11px] text-custom-muted">0 Materias</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SEMESTER VIEW -->
+    <section id="view-semester" class="hidden space-y-4 sm:space-y-6">
+      <div class="flex items-center justify-between">
+        <button onclick="window.navToHub()" class="inline-flex items-center gap-1.5 text-xs font-bold text-custom-muted hover:text-custom-dark transition"><i class="fa-solid fa-arrow-left"></i> Volver a la Carrera</button>
+        <span class="text-[10px] sm:text-xs bg-custom-card border border-custom px-2.5 py-0.5 sm:py-1 rounded-full font-bold text-custom-dark">Semestre Seleccionado</span>
+      </div>
+
+      <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-6 shadow-sm flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <h1 id="semester-page-title" class="text-2xl sm:text-3xl font-serif font-bold text-custom-dark">I SEMESTRE</h1>
+          <p class="text-[11px] sm:text-xs text-custom-muted">Gestión de asignaturas y avance de créditos.</p>
+        </div>
+        <button onclick="window.showAddCourseModal()" class="py-2 px-3 sm:py-2.5 sm:px-4 bg-custom-accent hover:bg-custom-accent-hover text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5"><i class="fa-solid fa-plus text-xs"></i> Agregar Asignatura</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
+        <div class="md:col-span-3 space-y-4">
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 text-center shadow-sm">
+            <h3 class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-custom-muted mb-1.5">Promedio Semestral</h3>
+            <div class="flex justify-center items-center gap-2 my-0.5">
+              <span id="sem-gpa-val" class="text-3xl sm:text-4xl font-serif font-bold text-custom-dark">0.00</span>
+              <span id="sem-gpa-letter" class="text-xs sm:text-sm font-bold dynamic-badge px-2 py-0.5 rounded-lg">A</span>
+            </div>
+            <p id="sem-gpa-status" class="text-[11px] sm:text-xs text-custom-muted">¡Excelente rendimiento!</p>
+          </div>
+
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 text-center shadow-sm relative group">
+            <h3 class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-custom-muted mb-2">Avatar de Estudio</h3>
+            <div class="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2">
+              <img id="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="w-full h-full object-cover rounded-full border-2 dynamic-circle-border shadow">
+              <label for="avatar-upload" class="absolute bottom-0 right-0 bg-custom-accent text-white p-1.5 sm:p-2 rounded-full cursor-pointer hover:scale-110 transition shadow text-xs"><i class="fa-solid fa-camera"></i></label>
+              <input type="file" id="avatar-upload" accept="image/*" class="hidden" onchange="window.uploadAvatar(event)">
+            </div>
+            <p id="user-display-name" class="font-bold text-xs sm:text-sm text-custom-dark">Estudiante</p>
+            <p class="text-[10px] sm:text-[11px] text-custom-muted font-handwriting text-base">"Modo enfoque activado ✨"</p>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 shadow-sm space-y-3 sm:space-y-4">
+          <div class="flex justify-between items-center border-b border-custom pb-2.5">
+            <h3 class="font-serif font-bold text-base sm:text-lg text-custom-dark flex items-center gap-2"><i class="fa-solid fa-book-bookmark dynamic-text-accent"></i> Materias</h3>
+            <span id="course-count-badge" class="text-[10px] sm:text-xs font-bold dynamic-badge px-2 py-0.5 rounded-full">0 Cursos</span>
+          </div>
+          <div id="courses-container" class="space-y-2.5 sm:space-y-3 min-h-[160px]"></div>
+        </div>
+
+        <div class="md:col-span-4 space-y-4">
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 shadow-sm">
+            <h3 class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-custom-muted mb-1">Créditos del Semestre</h3>
+            <div class="flex items-baseline justify-between mt-1">
+              <span id="sem-credits-val" class="text-2xl sm:text-3xl font-extrabold text-custom-dark">0</span>
+              <span class="text-[11px] text-custom-muted">Créditos Registrados</span>
+            </div>
+          </div>
+
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+            <div class="flex justify-between items-center border-b border-custom pb-2">
+              <h3 class="font-serif font-bold text-sm sm:text-base text-custom-dark flex items-center gap-1.5"><span>🐾</span> Motivación</h3>
+              <button onclick="window.nextMotivation()" class="text-xs font-bold hover:underline dynamic-text-accent">Cambiar ✨</button>
+            </div>
+            <div class="bg-amber-50/60 p-2.5 sm:p-3 rounded-xl border border-amber-200/60 text-center">
+              <p id="motivation-text" class="font-handwriting text-lg sm:text-xl text-amber-900 font-semibold leading-tight">"Paso a paso se llega muy lejos."</p>
+            </div>
+            <div class="relative rounded-xl overflow-hidden h-32 sm:h-36 border border-custom group shadow-inner">
+              <img id="pet-img" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Mascota" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute bottom-2 right-2 flex gap-1">
+                <label for="pet-upload" class="cursor-pointer bg-black/60 hover:bg-black/80 text-white p-1 rounded-lg text-[10px] backdrop-blur-sm transition"><i class="fa-solid fa-plus"></i> Tu Mascota</label>
+                <input type="file" id="pet-upload" accept="image/*" class="hidden" onchange="window.uploadPetPhoto(event)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COURSE DETAIL VIEW -->
+    <section id="view-course" class="hidden space-y-4 sm:space-y-6">
+      <div class="flex items-center justify-between">
+        <button onclick="window.openSemester(currentSemesterKey)" class="inline-flex items-center gap-1.5 text-xs font-bold text-custom-muted hover:text-custom-dark transition"><i class="fa-solid fa-arrow-left"></i> Volver a Asignaturas</button>
+        <span id="course-sem-badge" class="text-[10px] sm:text-xs bg-custom-card border border-custom px-2.5 py-0.5 rounded-full font-bold text-custom-dark">I Semestre</span>
+      </div>
+
+      <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-6 shadow-sm flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <h1 id="course-page-title" class="text-2xl sm:text-3xl font-serif font-bold text-custom-dark">Cálculo</h1>
+          <p id="course-page-subtitle" class="text-[11px] sm:text-xs text-custom-muted">Evaluaciones, Porcentajes y Calculadora de Nota Requerida</p>
+        </div>
+        <button onclick="window.showAddAssessmentModal()" class="py-2 px-3 sm:py-2.5 sm:px-4 bg-custom-accent hover:bg-custom-accent-hover text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5"><i class="fa-solid fa-plus text-xs"></i> Agregar Nota o Categoría</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
+        <div class="md:col-span-4 space-y-4">
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-5 sm:p-6 shadow-sm text-center space-y-3 sm:space-y-4">
+            <div>
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-custom-muted">Nota Acumulada</span>
+              <div class="text-3xl sm:text-4xl font-extrabold text-custom-dark my-0.5" id="course-current-grade">0.00</div>
+              <p class="text-[10px] sm:text-[11px] text-custom-muted">de 5.00 máximo</p>
+            </div>
+            <div class="w-full h-px bg-custom border-b border-custom"></div>
+            <div class="grid grid-cols-2 gap-2 text-center">
+              <div class="bg-amber-50 p-2.5 sm:p-3 rounded-xl border border-amber-100">
+                <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-amber-700">Créditos</span>
+                <p id="course-credits-badge" class="text-lg sm:text-xl font-bold text-amber-900">3.0</p>
+              </div>
+              <div class="dynamic-badge p-2.5 sm:p-3 rounded-xl border border-custom">
+                <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">Calificación</span>
+                <p id="course-letter-badge" class="text-lg sm:text-xl font-bold">A</p>
+              </div>
+            </div>
+            <div class="pt-1">
+              <span id="course-status-badge" class="inline-block w-full py-2 sm:py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-200 shadow-sm">Aprobado</span>
+            </div>
+          </div>
+
+          <div class="bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 shadow-sm space-y-2.5">
+            <h3 class="font-serif font-bold text-xs sm:text-sm text-custom-dark flex items-center gap-1.5"><i class="fa-solid fa-calculator dynamic-text-accent"></i> Calculadora "¿Qué nota necesito?"</h3>
+            <div class="space-y-1.5">
+              <label class="block text-[11px] font-semibold text-custom-muted">Nota Deseada para la Materia:</label>
+              <div class="flex gap-2">
+                <input type="number" id="target-grade-input" step="0.1" min="0" max="5" value="4.0" class="w-full p-2 rounded-xl border border-custom bg-custom-card text-xs font-bold text-custom-dark">
+                <button onclick="window.calculateRequiredGrade()" class="px-3 py-1.5 sm:py-2 bg-custom-sidebar text-custom-sidebar rounded-xl text-xs font-bold hover:opacity-90 transition">Calcular</button>
+              </div>
+            </div>
+            <div id="target-result-box" class="bg-sky-50 border border-sky-200 p-2.5 sm:p-3 rounded-xl text-xs text-sky-900 space-y-1">
+              <p class="font-semibold">Para obtener un <span id="target-val-display" class="font-bold underline">4.0</span>:</p>
+              <p id="target-calc-message">Ingresa datos en las evaluaciones para calcular.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-8 bg-custom-card border-2 border-custom rounded-2xl p-4 sm:p-5 shadow-sm space-y-3 sm:space-y-4">
+          <div class="flex justify-between items-center border-b border-custom pb-2.5">
+            <div>
+              <h3 class="font-serif font-bold text-base sm:text-lg text-custom-dark">Desglose de Evaluaciones</h3>
+              <p class="text-[11px] sm:text-xs text-custom-muted">Porcentaje total evaluado: <span id="total-eval-percent" class="font-bold dynamic-text-accent">0%</span> / 100%</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto -mx-2 px-2">
+            <table class="w-full text-left text-xs min-w-[340px]">
+              <thead>
+                <tr class="border-b border-custom text-custom-muted font-bold uppercase tracking-wider text-[10px] sm:text-xs">
+                  <th class="py-2 px-2 sm:px-3">% Peso</th>
+                  <th class="py-2 px-2 sm:px-3">Categoría / Nota individual</th>
+                  <th class="py-2 px-2 sm:px-3">Nota Sacada</th>
+                  <th class="py-2 px-2 sm:px-3">Puntos</th>
+                  <th class="py-2 px-2 sm:px-3 text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="assessments-table-body" class="divide-y divide-custom"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-3 text-[10px] sm:text-xs text-custom-muted">
+    🌲 Planeemos la Carrera &bull; Sincronizado en la Nube (Firebase)
+  </footer>
+
+  <!-- MODALS -->
+  <div id="modal-course" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-custom-card border-2 border-custom rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-xl space-y-4">
+      <div class="flex justify-between items-center border-b border-custom pb-3">
+        <h3 class="font-serif font-bold text-base sm:text-lg text-custom-dark">Nueva Asignatura</h3>
+        <button onclick="window.closeModal('modal-course')" class="text-custom-muted hover:text-custom-dark p-1"><i class="fa-solid fa-xmark text-base"></i></button>
+      </div>
+      <form onsubmit="window.handleAddCourse(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-custom-dark mb-1">Nombre de la Materia</label>
+          <input type="text" id="new-course-name" required placeholder="Ej: Biología Celular" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-custom-dark mb-1">Número de Créditos</label>
+          <input type="number" id="new-course-credits" required min="1" max="10" value="3" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="window.closeModal('modal-course')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl text-xs font-bold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 bg-custom-accent text-white rounded-xl text-xs font-bold">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-assessment" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-custom-card border-2 border-custom rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-xl space-y-4">
+      <div class="flex justify-between items-center border-b border-custom pb-3">
+        <h3 id="modal-assess-title" class="font-serif font-bold text-base sm:text-lg text-custom-dark">Agregar Nota o Categoría</h3>
+        <button onclick="window.closeModal('modal-assessment')" class="text-custom-muted hover:text-custom-dark p-1"><i class="fa-solid fa-xmark text-base"></i></button>
+      </div>
+      <form onsubmit="window.handleSaveAssessment(event)" class="space-y-3">
+        <div id="type-select-wrapper">
+          <label class="block text-xs font-bold text-custom-dark mb-1">Tipo de entrada</label>
+          <select id="assess-type" onchange="window.toggleAssessType(this.value)" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+            <option value="single">Nota única (ej. Parcial único 30%)</option>
+            <option value="group">Grupo de notas (ej. Varios Quices que suman un %)</option>
+            <option value="subitem">Añadir nota a un Grupo existente</option>
+          </select>
+        </div>
+
+        <div id="group-select-container" class="hidden">
+          <label class="block text-xs font-bold text-custom-dark mb-1">Seleccionar Grupo Existente</label>
+          <select id="assess-parent-id" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none"></select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-custom-dark mb-1" id="label-assess-name">Nombre de la Evaluación / Categoría</label>
+          <input type="text" id="new-assess-name" required placeholder="Ej: Parcial 1 o Quizzes" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+        </div>
+
+        <div id="weight-container">
+          <label class="block text-xs font-bold text-custom-dark mb-1">Porcentaje total que vale (%)</label>
+          <input type="number" id="new-assess-weight" min="1" max="100" value="25" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+        </div>
+
+        <div id="grade-container">
+          <label class="block text-xs font-bold text-custom-dark mb-1">Nota Sacada (0 a 5)</label>
+          <input type="number" id="new-assess-grade" step="0.1" min="0" max="5" value="4.5" class="w-full p-2.5 rounded-xl border border-custom bg-custom-card text-xs font-semibold focus:outline-none">
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="window.closeModal('modal-assessment')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl text-xs font-bold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 bg-custom-accent text-white rounded-xl text-xs font-bold">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FIREBASE CONFIGURADO CON TUS CREDENCIALES EXACTAS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhg064f5byEQTs500kjzmWyhSU5N6Y_xY",
+      authDomain: "planeemos-la-carrera.firebaseapp.com",
+      projectId: "planeemos-la-carrera",
+      storageBucket: "planeemos-la-carrera.firebasestorage.app",
+      messagingSenderId: "491234278475",
+      appId: "1:491234278475:web:bc5df1c0b6b2a48c3aa1ce",
+      measurementId: "G-MBF17R03NV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const MOTIVATIONAL_QUOTES = [
+      "Paso a paso se llega muy lejos.",
+      "Tu esfuerzo de hoy es la recompensa de tu mañana.",
+      "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+      "Estudia con pasión y cosecharás grandes triunfos.",
+      "Organizar tu tiempo es regalarte tranquilidad.",
+      "¡Confía en tu capacidad, vas muy bien!"
+    ];
+
+    const PET_IMAGES = [
+      "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80",
+      "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80",
+      "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=500&q=80",
+      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=500&q=80"
+    ];
+
+    const DEFAULT_DATA = {
+      degreeName: 'ING. AMBIENTAL',
+      activeTheme: 'theme-sage',
+      currentQuoteIdx: 0,
+      currentPetIdx: 0,
+      semesters: {
+        'I': { courses: [{ id: 'c1', name: 'Cálculo Diferencial', credits: 4, assessments: [{ id: 'a1', name: 'Parcial 1', weight: 30, grade: 4.2, isGroup: false }] }] },
+        'II': { courses: [] }, 'III': { courses: [] }, 'IV': { courses: [] },
+        'V': { courses: [] }, 'VI': { courses: [] }, 'VII': { courses: [] }, 'VIII': { courses: [] }
+      }
+    };
+
+    let currentUser = null;
+    let appData = DEFAULT_DATA;
+    window.currentSemesterKey = 'I';
+    window.currentCourseId = null;
+    window.editingAssessmentData = null; // Guarda info si estamos editando
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUser = user;
+        document.getElementById('user-display-email').innerText = user.email;
+        showAppHeader();
+
+        const userDocRef = doc(db, "usuarios", user.uid);
+        onSnapshot(userDocRef, (docSnap) => {
+          if (docSnap.exists()) {
+            appData = docSnap.data();
+            applyTheme(appData.activeTheme || 'theme-sage');
+            updateGlobalCalculations();
+            if (!document.getElementById('view-semester').classList.contains('hidden')) {
+              renderSemesterView();
+            }
+            if (!document.getElementById('view-course').classList.contains('hidden')) {
+              renderCourseView();
+            }
+          } else {
+            saveStateToCloud();
+          }
+        });
+
+        navToHub();
+      } else {
+        currentUser = null;
+        document.getElementById('app-header').classList.add('hidden');
+        showView('view-login');
+      }
+    });
+
+    async function saveStateToCloud() {
+      if (!currentUser) return;
+      try {
+        await setDoc(doc(db, "usuarios", currentUser.uid), appData, { merge: true });
+        updateGlobalCalculations();
+      } catch (err) {
+        console.error("Error al guardar en la nube: ", err);
+      }
+    }
+
+    window.handleLogin = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const degree = document.getElementById('login-degree').value;
+      const statusMsg = document.getElementById('login-status-msg');
+
+      statusMsg.classList.add('hidden');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (err) {
+        if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
+          try {
+            const newUser = await createUserWithEmailAndPassword(auth, email, password);
+            if (degree) appData.degreeName = degree.toUpperCase();
+            await setDoc(doc(db, "usuarios", newUser.user.uid), appData);
+          } catch (createErr) {
+            statusMsg.innerText = "Error de registro: " + createErr.message;
+            statusMsg.classList.remove('hidden');
+          }
+        } else {
+          statusMsg.innerText = "Error: " + err.message;
+          statusMsg.classList.remove('hidden');
+        }
+      }
+    };
+
+    window.logout = function() { signOut(auth); };
+
+    function showAppHeader() {
+      document.getElementById('app-header').classList.remove('hidden');
+      document.getElementById('header-degree').innerText = appData.degreeName || 'ING. AMBIENTAL';
+      document.getElementById('hub-degree-title').innerText = appData.degreeName || 'ING. AMBIENTAL';
+    }
+
+    window.changeTheme = function(themeName) {
+      appData.activeTheme = themeName;
+      applyTheme(themeName);
+      saveStateToCloud();
+    };
+
+    function applyTheme(themeName) {
+      document.body.className = `${themeName} min-h-screen font-sans antialiased selection:bg-rose-200 flex flex-col justify-between`;
+      document.getElementById('theme-select').value = themeName;
+    }
+
+    function showView(viewId) {
+      ['view-login', 'view-hub', 'view-semester', 'view-course'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(viewId).classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.navToHub = function() {
+      updateGlobalCalculations();
+      showView('view-hub');
+    };
+
+    window.openSemester = function(semKey) {
+      window.currentSemesterKey = semKey;
+      document.getElementById('semester-page-title').innerText = `${semKey} SEMESTRE`;
+      renderSemesterView();
+      showView('view-semester');
+    };
+
+    window.openCourse = function(courseId) {
+      window.currentCourseId = courseId;
+      renderCourseView();
+      showView('view-course');
+    };
+
+    function calculateCourseGrade(course) {
+      if (!course.assessments || course.assessments.length === 0) return 0;
+      let totalEarned = 0;
+
+      course.assessments.forEach(item => {
+        if (item.isGroup) {
+          if (item.subitems && item.subitems.length > 0) {
+            let sumSubGrades = 0;
+            item.subitems.forEach(sub => sumSubGrades += parseFloat(sub.grade));
+            const avgSubGrade = sumSubGrades / item.subitems.length;
+            totalEarned += (avgSubGrade * (parseFloat(item.weight) / 100));
+          }
+        } else {
+          totalEarned += (parseFloat(item.grade) * (parseFloat(item.weight) / 100));
+        }
+      });
+
+      return totalEarned;
+    }
+
+    function getLetterAndStatus(grade) {
+      if (grade >= 4.5) return { letter: 'A', status: 'Aprobado', color: 'emerald' };
+      if (grade >= 4.0) return { letter: 'B', status: 'Aprobado', color: 'emerald' };
+      if (grade >= 3.0) return { letter: 'C', status: 'Aprobado', color: 'emerald' };
+      if (grade >= 2.0) return { letter: 'D', status: 'En Riesgo', color: 'amber' };
+      return { letter: 'F', status: 'Reprobado', color: 'rose' };
+    }
+
+    function updateGlobalCalculations() {
+      let totalCareerCredits = 0;
+      let totalWeightedPoints = 0;
+      if (!appData.semesters) return;
+
+      Object.keys(appData.semesters).forEach(key => {
+        const sem = appData.semesters[key];
+        let semCredits = 0;
+        let semWeightedPoints = 0;
+
+        (sem.courses || []).forEach(c => {
+          const courseGrade = calculateCourseGrade(c);
+          semCredits += parseFloat(c.credits);
+          semWeightedPoints += (courseGrade * parseFloat(c.credits));
+        });
+
+        const statEl = document.getElementById(`sem-stat-${key}`);
+        if (statEl) {
+          const semGpa = semCredits > 0 ? (semWeightedPoints / semCredits).toFixed(2) : '0.00';
+          statEl.innerText = `${(sem.courses || []).length} Materias | Prom: ${semGpa}`;
+        }
+
+        totalCareerCredits += semCredits;
+        totalWeightedPoints += semWeightedPoints;
+      });
+
+      const globalGpa = totalCareerCredits > 0 ? (totalWeightedPoints / totalCareerCredits).toFixed(2) : '0.00';
+      const letterInfo = getLetterAndStatus(parseFloat(globalGpa));
+
+      document.getElementById('hub-total-credits').innerText = totalCareerCredits;
+      document.getElementById('hub-global-gpa').innerText = globalGpa;
+      document.getElementById('hub-global-letter').innerText = letterInfo.letter;
+    }
+
+    function renderSemesterView() {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const container = document.getElementById('courses-container');
+      container.innerHTML = '';
+
+      let semCredits = 0;
+      let semWeightedPoints = 0;
+
+      (sem.courses || []).forEach(c => {
+        const grade = calculateCourseGrade(c);
+        const { letter, color } = getLetterAndStatus(grade);
+        semCredits += parseFloat(c.credits);
+        semWeightedPoints += (grade * parseFloat(c.credits));
+
+        const card = document.createElement('div');
+        card.className = "p-3 sm:p-4 rounded-xl border border-custom bg-custom-card hover:border-rose-300 shadow-sm transition flex justify-between items-center cursor-pointer group";
+        card.onclick = () => window.openCourse(c.id);
+        card.innerHTML = `
+          <div>
+            <h4 class="font-serif font-bold text-sm sm:text-base text-custom-dark group-hover:text-rose-600 transition">${c.name}</h4>
+            <p class="text-[11px] text-custom-muted">${c.credits} Créditos | ${c.assessments ? c.assessments.length : 0} Evaluaciones</p>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="text-right">
+              <span class="text-base sm:text-lg font-bold text-custom-dark block">${grade.toFixed(2)}</span>
+              <span class="text-[9px] font-bold bg-${color}-100 text-${color}-800 px-1.5 py-0.5 rounded-md">${letter}</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-custom-muted group-hover:translate-x-1 transition"></i>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if ((sem.courses || []).length === 0) {
+        container.innerHTML = `<div class="text-center py-6 sm:py-8 text-custom-muted space-y-2"><i class="fa-solid fa-folder-open text-2xl sm:text-3xl"></i><p class="text-xs">No hay materias registradas en este semestre.</p></div>`;
+      }
+
+      const semGpa = semCredits > 0 ? (semWeightedPoints / semCredits).toFixed(2) : '0.00';
+      const { letter, status } = getLetterAndStatus(parseFloat(semGpa));
+
+      document.getElementById('sem-gpa-val').innerText = semGpa;
+      document.getElementById('sem-gpa-letter').innerText = letter;
+      document.getElementById('sem-gpa-status').innerText = status;
+      document.getElementById('sem-credits-val').innerText = semCredits;
+      document.getElementById('course-count-badge').innerText = `${(sem.courses || []).length} Cursos`;
+
+      document.getElementById('motivation-text').innerText = `"${MOTIVATIONAL_QUOTES[appData.currentQuoteIdx || 0]}"`;
+      document.getElementById('pet-img').src = PET_IMAGES[appData.currentPetIdx || 0];
+    }
+
+    function renderCourseView() {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      if (!course) return;
+
+      document.getElementById('course-page-title').innerText = course.name;
+      document.getElementById('course-credits-badge').innerText = course.credits;
+      document.getElementById('course-sem-badge').innerText = `${window.currentSemesterKey} Semestre`;
+
+      const tbody = document.getElementById('assessments-table-body');
+      tbody.innerHTML = '';
+
+      let totalWeight = 0;
+      let earnedPoints = 0;
+
+      (course.assessments || []).forEach(item => {
+        totalWeight += parseFloat(item.weight);
+
+        if (item.isGroup) {
+          const groupRow = document.createElement('tr');
+          groupRow.className = "bg-black/5 font-bold";
+          let groupAvg = 0;
+          if (item.subitems && item.subitems.length > 0) {
+            let sum = 0;
+            item.subitems.forEach(sub => sum += parseFloat(sub.grade));
+            groupAvg = sum / item.subitems.length;
+          }
+          const groupPoints = groupAvg * (parseFloat(item.weight) / 100);
+          earnedPoints += groupPoints;
+
+          groupRow.innerHTML = `
+            <td class="py-2.5 px-2 sm:px-3 text-[11px] sm:text-xs text-custom-dark">${item.weight}%</td>
+            <td class="py-2.5 px-2 sm:px-3 text-[11px] sm:text-xs text-custom-dark flex items-center gap-1.5"><i class="fa-solid fa-layer-group text-xs dynamic-text-accent"></i> ${item.name} (Grupo)</td>
+            <td class="py-2.5 px-2 sm:px-3 text-[11px] sm:text-xs">Prom: ${groupAvg.toFixed(2)}</td>
+            <td class="py-2.5 px-2 sm:px-3 dynamic-text-accent text-[11px] sm:text-xs">+${groupPoints.toFixed(2)} pts</td>
+            <td class="py-2.5 px-2 sm:px-3 text-right flex items-center justify-end gap-1">
+              <button onclick="window.showEditGroupModal('${item.id}')" class="text-gray-400 hover:text-blue-600 text-xs p-1" title="Editar Grupo"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="window.deleteAssessment('${item.id}')" class="text-gray-400 hover:text-rose-600 text-xs p-1" title="Eliminar Grupo"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(groupRow);
+
+          if (item.subitems) {
+            item.subitems.forEach(sub => {
+              const subRow = document.createElement('tr');
+              subRow.className = "hover:bg-black/5 transition text-custom-muted";
+              subRow.innerHTML = `
+                <td class="py-2 px-2 sm:px-3 text-[10px] pl-6">-</td>
+                <td class="py-2 px-2 sm:px-3 text-[11px]">↳ ${sub.name}</td>
+                <td class="py-2 px-2 sm:px-3 font-semibold text-[11px]">${parseFloat(sub.grade).toFixed(2)}</td>
+                <td class="py-2 px-2 sm:px-3 text-[10px]">-</td>
+                <td class="py-2 px-2 sm:px-3 text-right flex items-center justify-end gap-1">
+                  <button onclick="window.showEditSubItemModal('${item.id}', '${sub.id}')" class="text-gray-400 hover:text-blue-600 text-xs p-1" title="Editar Nota"><i class="fa-solid fa-pen"></i></button>
+                  <button onclick="window.deleteSubItem('${item.id}', '${sub.id}')" class="text-gray-400 hover:text-rose-600 text-xs p-1" title="Eliminar Nota"><i class="fa-solid fa-xmark"></i></button>
+                </td>
+              `;
+              tbody.appendChild(subRow);
+            });
+          }
+        } else {
+          const points = parseFloat(item.grade) * (parseFloat(item.weight) / 100);
+          earnedPoints += points;
+
+          const row = document.createElement('tr');
+          row.className = "hover:bg-black/5 transition";
+          row.innerHTML = `
+            <td class="py-2 px-2 sm:px-3 font-bold text-[11px] sm:text-xs">${item.weight}%</td>
+            <td class="py-2 px-2 sm:px-3 text-[11px] sm:text-xs">${item.name}</td>
+            <td class="py-2 px-2 sm:px-3 font-semibold text-[11px] sm:text-xs">${parseFloat(item.grade).toFixed(2)}</td>
+            <td class="py-2 px-2 sm:px-3 dynamic-text-accent font-bold text-[11px] sm:text-xs">+${points.toFixed(2)} pts</td>
+            <td class="py-2 px-2 sm:px-3 text-right flex items-center justify-end gap-1">
+              <button onclick="window.showEditSingleModal('${item.id}')" class="text-gray-400 hover:text-blue-600 text-xs p-1" title="Editar Nota"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="window.deleteAssessment('${item.id}')" class="text-gray-400 hover:text-rose-600 text-xs p-1" title="Eliminar Nota"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        }
+      });
+
+      document.getElementById('total-eval-percent').innerText = `${totalWeight}%`;
+      document.getElementById('course-current-grade').innerText = earnedPoints.toFixed(2);
+
+      const { letter, status, color } = getLetterAndStatus(earnedPoints);
+      document.getElementById('course-letter-badge').innerText = letter;
+      
+      const statusBadge = document.getElementById('course-status-badge');
+      statusBadge.innerText = status;
+      statusBadge.className = `inline-block w-full py-2 sm:py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-${color}-100 text-${color}-800 border border-${color}-200 shadow-sm`;
+
+      window.calculateRequiredGrade();
+    }
+
+    window.toggleAssessType = function(type) {
+      const groupSelectContainer = document.getElementById('group-select-container');
+      const weightContainer = document.getElementById('weight-container');
+      const gradeContainer = document.getElementById('grade-container');
+      const labelName = document.getElementById('label-assess-name');
+
+      if (type === 'single') {
+        groupSelectContainer.classList.add('hidden');
+        weightContainer.classList.remove('hidden');
+        gradeContainer.classList.remove('hidden');
+        labelName.innerText = "Nombre de la Evaluación / Examen";
+      } else if (type === 'group') {
+        groupSelectContainer.classList.add('hidden');
+        weightContainer.classList.remove('hidden');
+        gradeContainer.classList.add('hidden');
+        labelName.innerText = "Nombre del Grupo (ej. Quices, Talleres)";
+      } else if (type === 'subitem') {
+        groupSelectContainer.classList.remove('hidden');
+        weightContainer.classList.add('hidden');
+        gradeContainer.classList.remove('hidden');
+        labelName.innerText = "Nombre de la Nota Individual (ej. Taller 1)";
+        
+        const sem = appData.semesters[window.currentSemesterKey];
+        const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+        const parentSelect = document.getElementById('assess-parent-id');
+        parentSelect.innerHTML = '';
+        
+        if (course && course.assessments) {
+          course.assessments.filter(a => a.isGroup).forEach(g => {
+            const opt = document.createElement('option');
+            opt.value = g.id;
+            opt.innerText = `${g.name} (${g.weight}%)`;
+            parentSelect.appendChild(opt);
+          });
+        }
+      }
+    };
+
+    window.calculateRequiredGrade = function() {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      if (!course) return;
+
+      const targetGrade = parseFloat(document.getElementById('target-grade-input').value) || 4.0;
+      document.getElementById('target-val-display').innerText = targetGrade.toFixed(1);
+
+      let currentWeight = 0;
+      let currentPoints = 0;
+
+      (course.assessments || []).forEach(item => {
+        currentWeight += parseFloat(item.weight);
+        if (item.isGroup) {
+          if (item.subitems && item.subitems.length > 0) {
+            let sum = 0;
+            item.subitems.forEach(sub => sum += parseFloat(sub.grade));
+            const avg = sum / item.subitems.length;
+            currentPoints += (avg * (parseFloat(item.weight) / 100));
+          }
+        } else {
+          currentPoints += (parseFloat(item.grade) * (parseFloat(item.weight) / 100));
+        }
+      });
+
+      const remainingWeight = 100 - currentWeight;
+      const resultBox = document.getElementById('target-calc-message');
+
+      if (remainingWeight <= 0) {
+        if (currentPoints >= targetGrade) {
+          resultBox.innerText = `🎉 ¡Felicidades! Ya alcanzaste tu meta de ${targetGrade.toFixed(1)} en esta materia.`;
+        } else {
+          resultBox.innerText = `📌 Ya se ha evaluado el 100% de la materia. Tu nota final queda en ${currentPoints.toFixed(2)}.`;
+        }
+        return;
+      }
+
+      const pointsNeeded = targetGrade - currentPoints;
+      if (pointsNeeded <= 0) {
+        resultBox.innerText = `✨ ¡Ya garantizaste tu meta! No necesitas más puntos en el ${remainingWeight}% restante.`;
+      } else {
+        const requiredAvgOnRemaining = (pointsNeeded / (remainingWeight / 100));
+        if (requiredAvgOnRemaining > 5.0) {
+          resultBox.innerText = `⚠️ Inalcanzable: Necesitarías un promedio de ${requiredAvgOnRemaining.toFixed(2)} en el ${remainingWeight}% restante (máximo es 5.0).`;
+        } else {
+          resultBox.innerText = `🎯 Necesitas sacar un promedio de ${requiredAvgOnRemaining.toFixed(2)} en el ${remainingWeight}% restante de las evaluaciones.`;
+        }
+      }
+    };
+
+    window.showAddCourseModal = function() { document.getElementById('modal-course').classList.remove('hidden'); };
+    
+    window.showAddAssessmentModal = function() { 
+      window.editingAssessmentData = null;
+      document.getElementById('modal-assess-title').innerText = "Agregar Nota o Categoría";
+      document.getElementById('type-select-wrapper').classList.remove('hidden');
+      document.getElementById('assess-type').value = 'single';
+      window.toggleAssessType('single');
+      document.getElementById('new-assess-name').value = '';
+      document.getElementById('new-assess-weight').value = 25;
+      document.getElementById('new-assess-grade').value = 4.5;
+      document.getElementById('modal-assessment').classList.remove('hidden'); 
+    };
+
+    window.showEditSingleModal = function(id) {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      const item = course.assessments.find(a => a.id === id);
+      if (!item) return;
+
+      window.editingAssessmentData = { type: 'single', id: id };
+      document.getElementById('modal-assess-title').innerText = "Editar Nota";
+      document.getElementById('type-select-wrapper').classList.add('hidden');
+      document.getElementById('group-select-container').classList.add('hidden');
+      document.getElementById('weight-container').classList.remove('hidden');
+      document.getElementById('grade-container').classList.remove('hidden');
+      document.getElementById('label-assess-name').innerText = "Nombre de la Evaluación";
+
+      document.getElementById('new-assess-name').value = item.name;
+      document.getElementById('new-assess-weight').value = item.weight;
+      document.getElementById('new-assess-grade').value = item.grade;
+      document.getElementById('modal-assessment').classList.remove('hidden');
+    };
+
+    window.showEditGroupModal = function(id) {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      const item = course.assessments.find(a => a.id === id);
+      if (!item) return;
+
+      window.editingAssessmentData = { type: 'group', id: id };
+      document.getElementById('modal-assess-title').innerText = "Editar Grupo";
+      document.getElementById('type-select-wrapper').classList.add('hidden');
+      document.getElementById('group-select-container').classList.add('hidden');
+      document.getElementById('weight-container').classList.remove('hidden');
+      document.getElementById('grade-container').classList.add('hidden');
+      document.getElementById('label-assess-name').innerText = "Nombre del Grupo";
+
+      document.getElementById('new-assess-name').value = item.name;
+      document.getElementById('new-assess-weight').value = item.weight;
+      document.getElementById('modal-assessment').classList.remove('hidden');
+    };
+
+    window.showEditSubItemModal = function(groupId, subId) {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      const group = course.assessments.find(a => a.id === groupId);
+      const sub = group.subitems.find(s => s.id === subId);
+      if (!sub) return;
+
+      window.editingAssessmentData = { type: 'subitem', groupId: groupId, subId: subId };
+      document.getElementById('modal-assess-title').innerText = "Editar Nota Individual";
+      document.getElementById('type-select-wrapper').classList.add('hidden');
+      document.getElementById('group-select-container').classList.add('hidden');
+      document.getElementById('weight-container').classList.add('hidden');
+      document.getElementById('grade-container').classList.remove('hidden');
+      document.getElementById('label-assess-name').innerText = "Nombre de la Nota Individual";
+
+      document.getElementById('new-assess-name').value = sub.name;
+      document.getElementById('new-assess-grade').value = sub.grade;
+      document.getElementById('modal-assessment').classList.remove('hidden');
+    };
+
+    window.closeModal = function(id) { document.getElementById(id).classList.add('hidden'); };
+
+    window.handleAddCourse = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('new-course-name').value;
+      const credits = parseFloat(document.getElementById('new-course-credits').value) || 3;
+      const newCourse = { id: 'c_' + Date.now(), name, credits, assessments: [] };
+      if (!appData.semesters[window.currentSemesterKey].courses) {
+        appData.semesters[window.currentSemesterKey].courses = [];
+      }
+      appData.semesters[window.currentSemesterKey].courses.push(newCourse);
+      saveStateToCloud();
+      window.closeModal('modal-course');
+      renderSemesterView();
+    };
+
+    window.handleSaveAssessment = function(e) {
+      e.preventDefault();
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      if (!course) return;
+      if (!course.assessments) course.assessments = [];
+
+      const name = document.getElementById('new-assess-name').value;
+
+      if (window.editingAssessmentData) {
+        // MODO EDICIÓN
+        const ed = window.editingAssessmentData;
+        if (ed.type === 'single') {
+          const item = course.assessments.find(a => a.id === ed.id);
+          if (item) {
+            item.name = name;
+            item.weight = parseFloat(document.getElementById('new-assess-weight').value);
+            item.grade = parseFloat(document.getElementById('new-assess-grade').value);
+          }
+        } else if (ed.type === 'group') {
+          const item = course.assessments.find(a => a.id === ed.id);
+          if (item) {
+            item.name = name;
+            item.weight = parseFloat(document.getElementById('new-assess-weight').value);
+          }
+        } else if (ed.type === 'subitem') {
+          const group = course.assessments.find(a => a.id === ed.groupId);
+          if (group && group.subitems) {
+            const sub = group.subitems.find(s => s.id === ed.subId);
+            if (sub) {
+              sub.name = name;
+              sub.grade = parseFloat(document.getElementById('new-assess-grade').value);
+            }
+          }
+        }
+      } else {
+        // MODO CREACIÓN NUEVA
+        const type = document.getElementById('assess-type').value;
+        if (type === 'single') {
+          const weight = parseFloat(document.getElementById('new-assess-weight').value);
+          const grade = parseFloat(document.getElementById('new-assess-grade').value);
+          course.assessments.push({ id: 'a_' + Date.now(), name, weight, grade, isGroup: false });
+        } else if (type === 'group') {
+          const weight = parseFloat(document.getElementById('new-assess-weight').value);
+          course.assessments.push({ id: 'g_' + Date.now(), name, weight, isGroup: true, subitems: [] });
+        } else if (type === 'subitem') {
+          const parentId = document.getElementById('assess-parent-id').value;
+          const grade = parseFloat(document.getElementById('new-assess-grade').value);
+          const parentGroup = course.assessments.find(a => a.id === parentId);
+          if (parentGroup) {
+            if (!parentGroup.subitems) parentGroup.subitems = [];
+            parentGroup.subitems.push({ id: 'sub_' + Date.now(), name, grade });
+          }
+        }
+      }
+
+      saveStateToCloud();
+      window.closeModal('modal-assessment');
+      renderCourseView();
+    };
+
+    window.deleteAssessment = function(assessId) {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      if (course) {
+        course.assessments = course.assessments.filter(a => a.id !== assessId);
+        saveStateToCloud();
+        renderCourseView();
+      }
+    };
+
+    window.deleteSubItem = function(groupId, subId) {
+      const sem = appData.semesters[window.currentSemesterKey];
+      const course = (sem.courses || []).find(c => c.id === window.currentCourseId);
+      if (course) {
+        const group = course.assessments.find(a => a.id === groupId);
+        if (group && group.subitems) {
+          group.subitems = group.subitems.filter(s => s.id !== subId);
+          saveStateToCloud();
+          renderCourseView();
+        }
+      }
+    };
+
+    window.nextMotivation = function() {
+      appData.currentQuoteIdx = ((appData.currentQuoteIdx || 0) + 1) % MOTIVATIONAL_QUOTES.length;
+      appData.currentPetIdx = ((appData.currentPetIdx || 0) + 1) % PET_IMAGES.length;
+      saveStateToCloud();
+      renderSemesterView();
+    };
+
+    window.uploadAvatar = function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) { document.getElementById('avatar-img').src = e.target.result; }
+        reader.readAsDataURL(file);
+      }
+    };
+
+    window.uploadPetPhoto = function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) { document.getElementById('pet-img').src = e.target.result; }
+        reader.readAsDataURL(file);
+      }
+    };
+  </script>
+</body>
+</html>
